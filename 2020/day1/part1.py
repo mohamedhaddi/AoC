@@ -1,5 +1,5 @@
 with open("expense-report", "r") as file:
-    input = list(map(int, file.read().split()))
+    input = list(map(int, file.read().splitlines()))
 
 my_dict = {key: value for value, key in enumerate(input)}
 length = range(len(input))

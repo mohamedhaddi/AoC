@@ -1,5 +1,5 @@
 with open("expense-report", "r") as file:
-    input = list(map(int, file.read().split()))
+    input = list(map(int, file.read().splitlines()))
 
 length = range(len(input))
 my_set = set()
