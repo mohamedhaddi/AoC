@@ -1,9 +1,11 @@
 with open("passports", "r") as file:
     input = file.read()
 
-passports = input.split("\n\n")
 passports = list(
-    map(lambda el: list(map(lambda info: info.split(":")[0], el.split())), passports)
+    map(
+        lambda el: list(map(lambda info: info.split(":")[0], el.split())),
+        input.split("\n\n"),
+    )
 )
 required_fields = ["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"]
 valid_passports = 0
