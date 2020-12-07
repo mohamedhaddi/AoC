@@ -12,17 +12,18 @@ def main():
 
     """
     defining the function that directly searches within the input, every line,
-    if the bag we get as argument is a substring of the right side of the line
-    (the contained bags). if found, we add its container bag (left side of the line)
-    to the set of "bags".
+    if any of the bags in the list we get as argument is a substring of the right
+    side of the line (the contained bags). if found, we add its container bag (left
+    side of the line) to both sets of (all_bags_found) and (new_bags_to_look_for).
     """
 
-    def find_which_bag_contains(this_bag):
+    def find_which_bag_contains(these_bags):
         for line in input:
             current_bag, contained_bags = line.split(" bags contain ")
-            if this_bag in contained_bags:
-                all_bags_found.add(current_bag)
-                new_bags_to_look_for.add(current_bag)
+            for bag in these_bags:
+                if bag in contained_bags:
+                    all_bags_found.add(current_bag)
+                    new_bags_to_look_for.add(current_bag)
 
     """
     initializing the set that will collect our bags with the first bag of which we
@@ -64,8 +65,7 @@ def main():
         current_bags_count = len(all_bags_found)
         new_bags_copy = new_bags_to_look_for.copy()
         new_bags_to_look_for.clear()
-        for new_bag in new_bags_copy:
-            find_which_bag_contains(new_bag)
+        find_which_bag_contains(new_bags_copy)
         if len(all_bags_found) == current_bags_count:
             break
 
