@@ -7,6 +7,7 @@ def main():
     """
     split input by lines
     """
+
     with open("input", "r") as file:
         input = file.read().splitlines()
 
@@ -32,6 +33,7 @@ def main():
     splitting the input into a dictinary of key: value
     where key is the container bag, and value is its contained bags
     """
+
     for line in input:
         key, value = line.split(" bags contain ")
         value = value.replace("bag.", "").replace("bags.", "")
@@ -47,11 +49,13 @@ def main():
     start looking for container bags recursively,
     starting from the lowest bag: "shiny gold"
     """
+
     find_which_bag_contains("shiny gold")
 
     """
     print the result
     """
+
     print(f"Number of bags found: {len(bags_found)}\nBags: {bags_found}")
 
 

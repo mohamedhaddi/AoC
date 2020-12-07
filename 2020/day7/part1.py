@@ -2,6 +2,11 @@ import time
 
 
 def main():
+
+    """
+    split input by lines
+    """
+
     with open("input", "r") as file:
         input = file.read().splitlines()
 
@@ -23,6 +28,7 @@ def main():
     initializing the set that will collect our bags with the first bag of which we
     want to find its container bag: "shiny gold"
     """
+
     all_bags_found = {"shiny gold"}
 
     """
@@ -30,6 +36,7 @@ def main():
     clear it out after every iteration), because using the previous set will make us
     search again for what has already been searched
     """
+
     new_bags_to_look_for = all_bags_found.copy()
 
     """
@@ -52,6 +59,7 @@ def main():
     (current_bags_count), if they were the same, it means that we have found all the bags
     and get out of the infinite loop; else, we repeat.
     """
+
     while True:
         current_bags_count = len(all_bags_found)
         new_bags_copy = new_bags_to_look_for.copy()
@@ -66,6 +74,7 @@ def main():
     in a new variable "bags_found_count" minus 1 (for the "shiny gold" with which we
     initialized the bags set at first).
     """
+
     bags_found_count = current_bags_count - 1
     print(f"Number of bags found: {bags_found_count}\nBags: {all_bags_found}")
 
