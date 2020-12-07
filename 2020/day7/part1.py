@@ -16,50 +16,58 @@ def main():
         for line in input:
             current_bag, contained_bags = line.split(" bags contain ")
             if this_bag in contained_bags:
-                bags.add(current_bag)
+                all_bags_found.add(current_bag)
+                new_bags_to_look_for.add(current_bag)
 
     """
-    initializing the "bags" set with the first bag of which we want to find the
-    the container bags: "shiny gold"
+    initializing the set that will collect our bags with the first bag of which we
+    want to find its container bag: "shiny gold"
     """
-    bags = {"shiny gold"}
+    all_bags_found = {"shiny gold"}
 
     """
+    initializing the set that we'll use to only store the recently found bags (we
+    clear it out after every iteration), because using the previous set will make us
+    search again for what has already been searched
     """
-    bags_count = len(bags)
+    new_bags_to_look_for = all_bags_found.copy()
 
     """
-    inside this infinite loop, we copy the current set (bags) into a new set
-    (current_bags) so that we can loop through it (otherwise we wouldn't be able to,
-    as we're dynamically modifying the original set when we call the function inside
-    the for loop).
+    inside this infinite loop:
 
-    then we save the amount of the current bags into "bags_count", to compare it later
-    with the length of the updated set (len(bags)), so that once the new set (bags) has
-    the same length as the old set (current_bags), we get out of the loop.
+    1. we save the length of the current set of bags (all the container bags we've found)
+    to "current_bags_count", to compare it later with the length of the updated set
+    (len(all_bags_found)), so that once the new set (all_bags_found) has the
+    same length as the old set (current_bags_count), we get out of the loop.
 
-    inside the for loop that iterates over our current bags (copied set), for each bag
-    in the set we call the function that loops thought the input to find which bag
-    contains it, and adds it to the set; once we do this for all the bags in our current
-    bags (copied set), we check if there were actually any new bags added to the original
-    set by checking its length against the copied set's length, if they were the same, it
-    means that we have found all the bags and get out of the infinite loop; else, we
-    update the current bags and the current length, and repeat.
+    2. we copy the content of the (new_bags_to_look_for) set into a new set
+    (new_bags_copy) so that we could clear it out before the for loop.
+
+    3. inside the for loop that iterates over our new bags (copied set), for each bag
+    in the set we call the function that loops through the input to find which bag
+    contains it, and adds it to both (all_bags_found) and (new_bags_to_look_for).
+
+    4. once out of the fort loop, we check if there were actually any new bags added to
+    the original set (all_bags_found) by checking its length against its old length
+    (current_bags_count), if they were the same, it means that we have found all the bags
+    and get out of the infinite loop; else, we repeat.
     """
     while True:
-        current_bags = bags.copy()
-        bags_count = len(current_bags)
-        for bag in current_bags:
-            find_which_bag_contains(bag)
-        if len(bags) == bags_count:
+        current_bags_count = len(all_bags_found)
+        new_bags_copy = new_bags_to_look_for.copy()
+        new_bags_to_look_for.clear()
+        for new_bag in new_bags_copy:
+            find_which_bag_contains(new_bag)
+        if len(all_bags_found) == current_bags_count:
             break
 
     """
-    after getting out of the infinite loop, a.k.a finding all the bags, we add the count
-    to "bags_found" minus 1 (for the "shiny gold" with which we initialized the bags set).
+    after getting out of the infinite loop, a.k.a finding all the bags, we save the count
+    in a new variable "bags_found_count" minus 1 (for the "shiny gold" with which we
+    initialized the bags set at first).
     """
-    bags_found = bags_count - 1
-    print(f"Number of bags found: {bags_found}\nBags: {bags}")
+    bags_found_count = current_bags_count - 1
+    print(f"Number of bags found: {bags_found_count}\nBags: {all_bags_found}")
 
 
 start_time = time.time()
