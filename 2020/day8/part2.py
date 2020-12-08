@@ -4,12 +4,13 @@ with open("input", "r") as file:
 
 def loop(jump_to_alter, nop_to_alter):
 
-    index, acc = 0, 0
+    index = 0
+    global acc
 
     while index < length:
 
         if index in been_here:
-            return acc
+            return False
 
         been_here.append(index)
         operation, argument = instructions[index].split(" ")
@@ -32,14 +33,14 @@ def loop(jump_to_alter, nop_to_alter):
             else:
                 index += 1
 
-    return acc
+    return True
 
 
 been_here = []
 been_to_these_jmps = []
 been_to_these_nops = []
-acc_found = []
 length = len(instructions)
+acc = 0
 
 loop(None, None)
 
@@ -47,13 +48,13 @@ jmps_to_loop_through = been_to_these_jmps[:]
 nops_to_loop_through = been_to_these_nops[:]
 
 for jmp in jmps_to_loop_through:
+    acc = 0
     been_here.clear()
-    acc = loop(jmp, None)
-    acc_found.append(acc)
+    if loop(jmp, None):
+        print(acc)
 
 for nop in nops_to_loop_through:
+    acc = 0
     been_here.clear()
-    acc = loop(None, nop)
-    acc_found.append(acc)
-
-print(max(acc_found))
+    if loop(None, nop):
+        print(acc)
