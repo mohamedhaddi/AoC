@@ -1,7 +1,7 @@
 with open("input", "r") as file:
     instructions = file.read().splitlines()
 
-been_here = set()
+been_here = []
 acc, index = 0, 0
 length = len(instructions)
 
@@ -10,7 +10,7 @@ while index < length:
     if index in been_here:
         break
 
-    been_here.add(index)
+    been_here.append(index)
     operation, argument = instructions[index].split(" ")
 
     if operation == "nop":
@@ -23,4 +23,5 @@ while index < length:
     elif operation == "jmp":
         index += int(argument)
 
+print(been_here)
 print(acc)
