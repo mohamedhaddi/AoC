@@ -23,5 +23,4 @@ while index < length:
     elif operation == "jmp":
         index += int(argument)
 
-print(been_here)
 print(acc)
