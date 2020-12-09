@@ -3,20 +3,28 @@ with open("input", "r") as file:
 
 pair_found = True
 invalid_number = None
+preamble = 25
 
 for i, number in enumerate(input):
+
     j = i
-    for j in range(i, i + 25):
-        pair_to_find = input[i + 25] - input[j]
-        if pair_to_find in input[i : i + 24] and pair_to_find != input[j]:
+
+    for j in range(i, i + preamble):
+
+        pair_to_find = input[i + preamble] - input[j]
+
+        if pair_to_find in input[i : i + (preamble - 1)] and pair_to_find != input[j]:
+
             pair_found = True
             break
+
         else:
+
             pair_found = False
+
     if not pair_found:
+
         invalid_number = input[i + 25]
         break
 
 print(invalid_number)
-
-
