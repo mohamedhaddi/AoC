@@ -29,7 +29,7 @@ for i in range(len(input)):
         invalid_number = input[i + preamble]
         break
 
-### PART 2
+### PART 2: Used the sliding window technique
 
 right_index = 1
 sublist_found = [input[0], input[right_index]]
