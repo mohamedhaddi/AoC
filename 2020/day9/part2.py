@@ -31,25 +31,25 @@ for i in range(len(input)):
 
 ### PART 2: Used the sliding window technique
 
+left_index = 0
 right_index = 1
-sublist_found = [input[0], input[right_index]]
-sublist_sum = 0
+sublist_sum = input[left_index] + input[right_index]
 
 while True:
 
-    sublist_sum = sum(sublist_found)
-
     if sublist_sum == invalid_number:
 
+        sublist_found = input[left_index:right_index]
         break
 
     elif sublist_sum < invalid_number:
 
         right_index += 1
-        sublist_found.append(input[right_index])
+        sublist_sum += input[right_index]
 
-    elif sublist_sum > invalid_number:
+    else:
 
-        sublist_found.pop(0)
+        sublist_sum -= input[left_index]
+        left_index += 1
 
 print(max(sublist_found) + min(sublist_found))
