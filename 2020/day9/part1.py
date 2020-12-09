@@ -24,7 +24,7 @@ for i, number in enumerate(input):
 
     if not pair_found:
 
-        invalid_number = input[i + 25]
+        invalid_number = input[i + preamble]
         break
 
 print(invalid_number)
