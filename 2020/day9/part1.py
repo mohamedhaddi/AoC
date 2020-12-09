@@ -5,7 +5,7 @@ pair_found = True
 invalid_number = None
 preamble = 25
 
-for i, number in enumerate(input):
+for i in range(len(input)):
 
     j = i
 
