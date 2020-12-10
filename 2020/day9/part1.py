@@ -1,5 +1,5 @@
 with open("input", "r") as file:
-    input = list(map(lambda number: int(number), file.read().splitlines()))
+    input = list(map(int, file.read().splitlines()))
 
 pair_found = True
 invalid_number = None
