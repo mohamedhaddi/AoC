@@ -13,7 +13,7 @@ def check_bus_times(bus_id):
     return (time, bus_id)
 
 
-earliest_buses = list(map(lambda bus_id: check_bus_times(bus_id), bus_ids))
+earliest_buses = list(map(check_bus_times, bus_ids))
 earliest_bus_time, earliest_bus = min(earliest_buses)
 
 print(earliest_bus * (earliest_bus_time - timestamp))
