@@ -22,3 +22,4 @@ for line in input:
         exec("%s = %d" % (words[0], int(new_value, 2)))
 
 print(sum(mem.values()))
+print(mem)
